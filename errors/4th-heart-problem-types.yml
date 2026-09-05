@@ -1,0 +1,42 @@
+generated: '2026-09-05'
+method: probed
+source: https://fourthandheart.com/api/ucp/mcp
+format: jsonrpc2
+note: >-
+  There is no OpenAPI to derive 4xx/5xx responses from and 4th & Heart publishes no error reference,
+  so this catalog records only the error envelope and the error observed by direct probe. It is
+  deliberately short: an unobserved error code is not recorded.
+envelope:
+  transport: JSON-RPC 2.0 over HTTP POST
+  shape: '{ jsonrpc, id, error: { code, message, data: { code, content, continue_url } } }'
+  http_status_on_error: 422
+  note: >-
+    The HTTP status and the JSON-RPC error code carry different information. A protocol-level failure
+    returns HTTP 422 with a JSON-RPC error object; agents must read the body, not the status line.
+problems:
+- code: -32001
+  data_code: invalid_profile_url
+  title: UCP discovery failed
+  message: 'Unable to fetch agent profile: Missing profile uri'
+  http_status: 422
+  meaning: >-
+    The request omitted meta.ucp-agent.profile, or the profile URI given could not be dereferenced by
+    the server.
+  remediation: >-
+    Supply meta.ucp-agent.profile as a resolvable URI describing the calling agent on every tools/call
+    and on any method the server routes through UCP discovery.
+  observed: '2026-09-05'
+  evidence: >-
+    POST https://fourthandheart.com/api/ucp/mcp with a tools/call body omitting meta returned this
+    error verbatim
+- code: 429
+  data_code: rate_limited
+  title: Rate limited
+  http_status: 429
+  meaning: The MCP endpoint is rate limited per IP.
+  remediation: Back off on 429 responses.
+  observed: null
+  evidence: >-
+    Documented at https://fourthandheart.com/llms.txt ("The MCP endpoint is rate-limited per IP. Back
+    off on 429 responses."). Not reproduced by probe — this pipeline does not generate load to
+    trigger a limit.

@@ -1,0 +1,188 @@
+generated: '2026-09-05'
+method: probed
+source: https://fourthandheart.com/api/ucp/mcp (JSON-RPC tools/list, HTTP 200, anonymous)
+status: published
+deployment:
+  mode: remote
+  endpoint: https://fourthandheart.com/api/ucp/mcp
+  auth: none
+  verified: probed
+  note: 'tools/list answers anonymously over HTTP POST with no credential. Individual tools/call requests
+    additionally require a meta.ucp-agent.profile URI naming the calling agent; a call without one is
+    rejected with JSON-RPC -32001 invalid_profile_url. That is a UCP agent-identity requirement, not an
+    API key, so the server is recorded as auth: none.'
+server:
+  name: universal-commerce
+  version: 0.1.0
+  transport: http
+  url: https://fourthandheart.com/api/ucp/mcp
+  protocol_version: '2024-11-05'
+  capabilities:
+  - tools
+  - prompts
+  - resources
+  - logging
+  source: probed initialize response, HTTP 200
+protocol:
+  name: Universal Commerce Protocol
+  spec: https://ucp.dev
+  version: '2026-08-25'
+  supported_versions:
+  - '2026-08-25'
+  - '2026-04-08'
+  - '2026-01-23'
+  discovery: https://fourthandheart.com/.well-known/ucp
+  service: dev.ucp.shopping
+  schema: https://ucp.dev/2026-08-25/services/shopping/mcp.openrpc.json
+ownership: 'The UCP profile names https://tava-life.myshopify.com as the canonical service host. That
+  is this same store: tava-life.myshopify.com 301s to fourthandheart.com, and the shop id 6414473 in the
+  UCP/OIDC documents matches the shopId embedded in the fourthandheart.com storefront HTML. tava-life
+  is the merchant''s platform-assigned myshopify hostname, not a different company.'
+human_approval_required: true
+human_approval_note: 'The published agent instructions state that checkout completion requires contemporaneous
+  buyer approval and that agents must not complete payment without explicit buyer consent. Source: https://fourthandheart.com/llms.txt'
+tool_count: 13
+tools:
+- name: get_checkout
+  category: checkout
+  description: Returns details about the checkout, including line items, totals, and any applicable discounts
+    or taxes.
+  input_properties:
+  - id
+  - meta
+  required:
+  - meta
+  - id
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: create_checkout
+  category: checkout
+  description: Creates a checkout. Returns checkout details, including line items, totals, and any applicable
+    discounts or taxes.
+  input_properties:
+  - checkout
+  - meta
+  required:
+  - meta
+  - checkout
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: update_checkout
+  category: checkout
+  description: Updates a checkout. Returns checkout details, including line items, totals, and any applicable
+    discounts or taxes.
+  input_properties:
+  - checkout
+  - id
+  - meta
+  required:
+  - meta
+  - checkout
+  - id
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: complete_checkout
+  category: checkout
+  description: Completes a checkout and returns the checkout result. Returns details about the completed
+    checkout, including order ID, Thank You Page URL, or any errors encountered.
+  input_properties:
+  - checkout
+  - id
+  - meta
+  required:
+  - meta
+  - id
+  - checkout
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: cancel_checkout
+  category: checkout
+  description: Cancels a checkout.
+  input_properties:
+  - id
+  - meta
+  required:
+  - meta
+  - id
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: get_cart
+  category: cart
+  description: Get the cart contents
+  input_properties:
+  - id
+  - meta
+  required:
+  - meta
+  - id
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: create_cart
+  category: cart
+  description: Creates a new cart
+  input_properties:
+  - cart
+  - meta
+  required:
+  - meta
+  - cart
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: update_cart
+  category: cart
+  description: Perform updates to a cart.
+  input_properties:
+  - cart
+  - id
+  - meta
+  required:
+  - meta
+  - cart
+  - id
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: cancel_cart
+  category: cart
+  description: Cancels a cart.
+  input_properties:
+  - id
+  - meta
+  required:
+  - meta
+  - id
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: get_order
+  category: order
+  description: Get the details of an order
+  input_properties:
+  - id
+  - meta
+  required:
+  - meta
+  - id
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: search_catalog
+  category: catalog
+  description: Search for products from the online store, hosted on Shopify.
+  input_properties:
+  - catalog
+  - meta
+  required:
+  - meta
+  - catalog
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: lookup_catalog
+  category: catalog
+  description: Look up multiple products or variants by identifier.
+  input_properties:
+  - catalog
+  - meta
+  required:
+  - meta
+  - catalog
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+- name: get_product
+  category: catalog
+  description: Retrieve complete product detail by identifier. Returns a singular product
+  input_properties:
+  - catalog
+  - meta
+  required:
+  - meta
+  - catalog
+  source: probed tools/list — inputSchema captured verbatim in mcp/4th-heart-mcp-tools.json
+crosswalk: 'No tool crosswalk emitted: 4th & Heart publishes no OpenAPI, so there are no operationIds
+  to bind these tools to. The read-only JSON endpoints named in llms.txt (/products/{handle}.json, /collections/{handle}/products.json)
+  are Shopify storefront conventions, not a described contract.'

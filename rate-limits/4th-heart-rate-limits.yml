@@ -1,0 +1,30 @@
+generated: '2026-09-05'
+method: searched
+source: https://fourthandheart.com/llms.txt
+limit_count: 0
+note: >-
+  A rate limit is documented in prose but never quantified, and no rate-limit headers were returned on
+  observed 200 responses. limit_count is 0 because no numeric limit is published anywhere — an honest
+  zero, not an unchecked field. The 429-and-back-off contract below is real and is what an agent
+  actually gets.
+limits: []
+signaling:
+  documented: true
+  statement: 'The MCP endpoint is rate-limited per IP. Back off on 429 responses.'
+  scope: per-ip
+  window: unpublished
+  limit: unpublished
+  burst: unpublished
+  status_on_exhaustion: 429
+  retry_after_header: unknown
+  response_headers_observed: []
+  headers_probe:
+    url: https://fourthandheart.com/api/ucp/mcp
+    method: POST
+    http_status: 200
+    observed: [content-type, x-request-id]
+    note: >-
+      No RateLimit-*, X-RateLimit-* or Retry-After header was present on a successful response.
+      Whether Retry-After accompanies a 429 was not tested: this pipeline does not generate load to
+      force a limit.
+  observed: '2026-09-05'

@@ -1,0 +1,68 @@
+generated: '2026-09-05'
+method: probed
+source: probed discovery documents on https://fourthandheart.com
+note: >-
+  Every entry below is asserted from a document this pipeline fetched from the merchant's own host,
+  not from a marketing claim. 4th & Heart publishes no compliance program, certifications or trust
+  center of its own, so no Compliance pointer is emitted.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: https://fourthandheart.com/.well-known/oauth-authorization-server (HTTP 200)
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-authorization-server returns issuer, authorization_endpoint, token_endpoint,
+    jwks_uri and response_types_supported
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: >-
+    /.well-known/oauth-protected-resource returns resource, authorization_servers and
+    bearer_methods_supported
+- id: openid-connect-discovery
+  conforms: true
+  evidence: >-
+    /.well-known/openid-configuration returns a full OIDC provider configuration including
+    id_token_signing_alg_values_supported RS256 and claims_supported
+- id: rfc7636-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported S256 in the authorization-server metadata
+- id: model-context-protocol
+  conforms: true
+  evidence: >-
+    https://fourthandheart.com/api/ucp/mcp answers JSON-RPC initialize with protocolVersion
+    2024-11-05 and tools/list with 13 tools carrying JSON Schema inputSchema (HTTP 200, anonymous)
+- id: llms-txt
+  conforms: true
+  evidence: https://fourthandheart.com/llms.txt (HTTP 200, text/markdown)
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors are JSON-RPC 2.0 error objects, not application/problem+json; probed -32001 response from
+    the MCP endpoint
+- id: openapi
+  conforms: false
+  evidence: no OpenAPI served on any probed host or path
+- id: asyncapi
+  conforms: false
+  evidence: no event or streaming surface published
+domain_standards:
+- id: ucp
+  name: Universal Commerce Protocol
+  version: '2026-08-25'
+  conforms: true
+  evidence: >-
+    https://fourthandheart.com/.well-known/ucp declares ucp.version 2026-08-25, the dev.ucp.shopping
+    service bound to transport mcp, and the dev.ucp.shopping.cart, .checkout, .order, .discount and
+    .fulfillment capabilities, each with its published schema URI
+  spec: https://ucp.dev/2026-08-25/specification/overview/
+  note: >-
+    This is the domain standard for this provider's market. An agent that already speaks UCP can
+    transact with this store with no bespoke connector. The implementation is Shopify's native
+    platform support, served on the merchant's own domain under the merchant's own shop id.
+- id: ucp-versions-served
+  name: UCP prior versions still served
+  conforms: true
+  evidence: >-
+    supported_versions in /.well-known/ucp names 2026-04-08 and 2026-01-23 with live per-version
+    profile URLs

@@ -1,0 +1,50 @@
+generated: '2026-09-05'
+method: probed
+source: https://fourthandheart.com/.well-known/ucp
+note: >-
+  4th & Heart publishes no versioning policy, deprecation policy, SLA or status page of its own. What
+  it does publish is a dated protocol-version ladder in its UCP merchant profile, which is a real and
+  machine-readable versioning signal, so that is what is recorded here. No StatusPage or Deprecation
+  pointer is emitted, because neither surface exists.
+versioning:
+  scheme: dated
+  current: '2026-08-25'
+  supported:
+  - version: '2026-08-25'
+    status: current
+    profile: https://fourthandheart.com/.well-known/ucp
+  - version: '2026-04-08'
+    status: served
+    profile: https://tava-life.myshopify.com/.well-known/ucp/2026-04-08
+  - version: '2026-01-23'
+    status: served
+    profile: https://tava-life.myshopify.com/.well-known/ucp/2026-01-23
+  docs: https://ucp.dev
+  note: >-
+    Two prior dated versions are still served alongside the current one, which is the only continuity
+    commitment discoverable anywhere on this provider's surface.
+mcp_protocol:
+  negotiated: '2024-11-05'
+  evidence: probed initialize response from https://fourthandheart.com/api/ucp/mcp
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No deprecation policy, Sunset header or RFC 8594 signal found on any probed host.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_probe:
+- url: https://status.fourthandheart.com/
+  status: 0
+  note: >-
+    Resolves to a wildcard A record (50.87.170.12) shared with api. and developers. subdomains, but no
+    HTTPS listener answers — the TLS connection fails. A wildcard DNS entry is not a status page.
+- url: https://api.fourthandheart.com/
+  status: 0
+  note: same wildcard A record, no HTTPS listener
+- url: https://developers.fourthandheart.com/
+  status: 0
+  note: same wildcard A record, no HTTPS listener
+changelog: null
+deprecated_operations: []

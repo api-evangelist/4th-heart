@@ -1,0 +1,86 @@
+generated: '2026-09-05'
+method: probed
+source: https://fourthandheart.com/.well-known/
+note: >-
+  Probed the registrable domain and its www host. The store is a Shopify storefront, so the
+  OAuth/OIDC discovery documents are served by Shopify's customer-accounts platform but are published
+  on the merchant's own domain and are scoped to this merchant's shop id (6414473, which matches the
+  shopId embedded in the storefront HTML). The path-echo negative control returned 404 on both hosts,
+  so the 200s recorded below are real documents rather than a catch-all router. No security.txt,
+  api-catalog, ai-plugin.json, aauth-resource.json, apis.json or agent card is served on any host.
+hit_count: 8
+path_echo_control: passed
+hosts:
+- host: https://fourthandheart.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: 4th-heart-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: 4th-heart-oauth-authorization-server.json
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: 4th-heart-oauth-protected-resource.json
+  - path: /.well-known/ucp
+    status: 200
+    file: 4th-heart-ucp.json
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/apis.json
+    status: 404
+  - path: /apis.json
+    status: 404
+  - path: /apis.yml
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/4th-heart-negative-control-7f3ab91c.json
+    status: 404
+    note: path-echo negative control, correctly 404
+- host: https://www.fourthandheart.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: 4th-heart-openid-configuration.json
+    note: identical document to the apex host
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: 4th-heart-oauth-authorization-server.json
+    note: identical document to the apex host
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: 4th-heart-oauth-protected-resource.json
+    note: differs only in the resource field, which names the www host
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/aauth-resource.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/4th-heart-negative-control-7f3ab91c.json
+    status: 404
+    note: path-echo negative control, correctly 404
+- host: https://shopify.com/authentication/6414473
+  note: >-
+    Named in authorization_servers by the merchant's own oauth-protected-resource document. This is
+    Shopify's platform-operated authorization server, not a host 4th & Heart controls; recorded for
+    completeness because the pipeline follows authorization_servers to a third host.
+  documents:
+  - path: /.well-known/jwks.json
+    status: 200
+    note: declared as jwks_uri by the merchant's discovery documents; not saved, platform-operated

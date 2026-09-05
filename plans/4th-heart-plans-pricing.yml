@@ -1,0 +1,18 @@
+generated: '2026-09-05'
+method: searched
+source: https://fourthandheart.com/agents.md
+plan_count: 0
+note: >-
+  4th & Heart sells food, not API access. There is no developer plan, tier, quota or paid API product
+  of any kind: the UCP/MCP commerce endpoint is served anonymously at no charge as part of the
+  storefront, and the only prices on the site are retail product prices. Recorded as an explicit zero
+  rather than omitted, so this reads as "checked, none published" rather than "not checked".
+plans: []
+access:
+  model: free and anonymous
+  endpoint: https://fourthandheart.com/api/ucp/mcp
+  cost: none
+  signup_required: false
+  evidence: >-
+    tools/list returned HTTP 200 with no credential on 2026-09-05; no pricing, quota or plan language
+    appears in /llms.txt or /agents.md.

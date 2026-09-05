@@ -1,0 +1,18 @@
+generated: '2026-09-05'
+method: generated
+source: >-
+  Grounded in a live tools/list probe of https://fourthandheart.com/api/ucp/mcp (2026-09-05, saved at
+  mcp/4th-heart-mcp-tools.json) and the provider's published agent instructions at
+  https://fourthandheart.com/llms.txt. No provider-published Agent Skill exists; the store's llms.txt
+  instead recommends the platform-wide Shop skill at https://shop.app/SKILL.md, which is Shopify's,
+  not 4th & Heart's, and is therefore not harvested here.
+skills:
+- file: 4th-heart-agent-purchase.md
+  name: Buy from the 4th & Heart store as an agent
+  description: >-
+    Search the catalog, build a cart, run a checkout and complete a purchase over the store's
+    anonymous UCP MCP endpoint, with the buyer approving payment.
+  api: mcp/4th-heart-mcp.yml
+  operations: [search_catalog, get_product, lookup_catalog, create_cart, update_cart, get_cart,
+    cancel_cart, create_checkout, update_checkout, get_checkout, complete_checkout, cancel_checkout,
+    get_order]

@@ -1,0 +1,36 @@
+generated: '2026-09-05'
+method: probed
+source: https://fourthandheart.com/.well-known/openid-configuration
+note: >-
+  Scopes read verbatim from scopes_supported in the merchant's own OAuth 2.0 authorization-server and
+  OpenID Connect discovery documents. Descriptions below are the plain reading of each scope name;
+  4th & Heart publishes no scope reference page of its own, because the authorization server is
+  operated by Shopify on the merchant's behalf. The agent-commerce MCP endpoint at /api/ucp/mcp is
+  anonymous and consumes none of these scopes.
+schemes:
+- name: shopify-customer-account
+  issuer: https://shopify.com/authentication/6414473
+  source: well-known/4th-heart-oauth-authorization-server.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://shopify.com/authentication/6414473/oauth/authorize
+    tokenUrl: https://shopify.com/authentication/6414473/oauth/token
+scopes:
+- scope: openid
+  description: Request an OpenID Connect ID token for the signed-in customer.
+  flows: [authorizationCode]
+  sources: [well-known/4th-heart-openid-configuration.json]
+- scope: email
+  description: Release the customer's email address and its verification state.
+  flows: [authorizationCode]
+  sources: [well-known/4th-heart-openid-configuration.json]
+- scope: customer-account-api:full
+  description: Full access to the signed-in customer's account data via the Customer Account API.
+  flows: [authorizationCode]
+  sources: [well-known/4th-heart-openid-configuration.json]
+- scope: customer-account-mcp-api:full
+  description: >-
+    Full access to the customer-account MCP API, the authenticated counterpart to the anonymous
+    storefront commerce MCP endpoint.
+  flows: [authorizationCode]
+  sources: [well-known/4th-heart-openid-configuration.json]

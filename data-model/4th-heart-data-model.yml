@@ -1,0 +1,74 @@
+generated: '2026-09-05'
+method: derived
+source: mcp/4th-heart-mcp-tools.json
+note: >-
+  Derived from the probed MCP tool set and the UCP capability declarations, not from an OpenAPI —
+  there is none. Entities are named only where a tool operates on them by name; relationships are the
+  ones UCP declares via capability `extends`, plus the id references the tool schemas require. Field
+  lists are deliberately absent: the tool inputSchemas describe request envelopes, and no response
+  schema is published, so enumerating attributes would be invention.
+entities:
+- name: product
+  identified_by: identifier
+  operations: [get_product, lookup_catalog, search_catalog]
+  note: Catalog unit. lookup_catalog resolves products or variants by identifier.
+- name: variant
+  identified_by: identifier
+  operations: [lookup_catalog]
+  note: Named in the lookup_catalog description as an alternative identifier target for a product.
+- name: cart
+  identified_by: id
+  operations: [create_cart, get_cart, update_cart, cancel_cart]
+- name: checkout
+  identified_by: id
+  operations: [create_checkout, get_checkout, update_checkout, complete_checkout, cancel_checkout]
+- name: order
+  identified_by: id
+  operations: [get_order]
+  note: Read-only on this surface. No tool creates, amends or refunds an order.
+- name: agent_profile
+  identified_by: meta.ucp-agent.profile
+  operations: []
+  note: >-
+    A URI the caller supplies and the server dereferences on tools/call. Not addressable by any tool,
+    but it is a required entity in every mutating request.
+relationships:
+- from: cart
+  to: product
+  kind: has_many
+  via: line items
+  confidence: high
+  evidence: >-
+    UCP declares dev.ucp.shopping.cart alongside the catalog service; cart tools operate on line
+    items per the checkout tool descriptions
+- from: checkout
+  to: cart
+  kind: belongs_to
+  via: cart id
+  confidence: medium
+  evidence: >-
+    dev.ucp.shopping.fulfillment and .discount both declare extends [dev.ucp.shopping.checkout,
+    dev.ucp.shopping.cart] in /.well-known/ucp, which binds the two
+- from: checkout
+  to: product
+  kind: has_many
+  via: line items
+  confidence: high
+  evidence: >-
+    'Returns details about the checkout, including line items, totals, and any applicable discounts
+    or taxes' — get_checkout description
+- from: order
+  to: checkout
+  kind: belongs_to
+  via: completion of complete_checkout
+  confidence: high
+  evidence: complete_checkout 'Completes a checkout and returns the checkout result'
+capabilities_declared:
+- dev.ucp.shopping.cart
+- dev.ucp.shopping.checkout
+- dev.ucp.shopping.order
+- dev.ucp.shopping.discount
+- dev.ucp.shopping.fulfillment
+money:
+  representation: integer minor units plus ISO 4217 currency code
+  evidence: stated in every tool description

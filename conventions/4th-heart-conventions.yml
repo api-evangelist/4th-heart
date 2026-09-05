@@ -1,0 +1,95 @@
+generated: '2026-09-05'
+method: probed
+source: >-
+  https://fourthandheart.com/llms.txt, https://fourthandheart.com/agents.md, and direct probes of
+  https://fourthandheart.com/api/ucp/mcp
+note: >-
+  Cross-cutting semantics for the agent-commerce surface. Derived from the published agent
+  instructions and from the probed MCP tool schemas, not from an OpenAPI — 4th & Heart publishes none.
+authentication:
+  style: none on the storefront MCP endpoint; OAuth 2.0 / OIDC on the customer-account surface
+  agent_identity: >-
+    meta.ucp-agent.profile, a resolvable URI naming the calling agent, is required on tools/call
+  see: authentication/4th-heart-authentication.yml
+idempotency:
+  supported: false
+  coverage: none
+  mechanism: null
+  header: null
+  retention: null
+  note: >-
+    No idempotency key, request-id echo or replay-protection mechanism appears in any of the 13 MCP
+    tool inputSchemas, in /llms.txt, or in /agents.md. The mutating tools (create_cart, update_cart,
+    create_checkout, update_checkout, complete_checkout) accept no client-supplied idempotency token,
+    so a retried complete_checkout is not protected by contract. Recorded as none rather than
+    unknown: the full tool schema set was retrieved and inspected, and the field is genuinely absent.
+reversibility:
+  grade: documented
+  note: >-
+    Reversal operations exist and are named, but no reversal WINDOW is stated for any of them. The one
+    stated window on the site belongs to a manual retail returns process, not to an API operation, so
+    it does not upgrade this grade to verified.
+  surfaces:
+  - write_operation: create_cart
+    reversal_operation: cancel_cart
+    kind: cancel
+    window: null
+    docs: https://fourthandheart.com/llms.txt
+    evidence: cancel_cart present in the probed tools/list
+  - write_operation: create_checkout
+    reversal_operation: cancel_checkout
+    kind: cancel
+    window: null
+    docs: https://fourthandheart.com/llms.txt
+    evidence: >-
+      cancel_checkout present in the probed tools/list. The docs do not state whether it remains
+      valid after complete_checkout; do not assume it does.
+  - write_operation: complete_checkout
+    reversal_operation: null
+    kind: out-of-band refund
+    window: 30 days from purchase
+    docs: https://fourthandheart.com/policies/refund-policy
+    evidence: >-
+      "Our policy lasts 30 days. If 30 days have gone by since your purchase, unfortunately we can't
+      offer you a refund or exchange." This is a human process initiated by emailing
+      wecare@4thandheart.com — there is no refund or void tool on the MCP endpoint. An agent that
+      completes a checkout cannot reverse it programmatically.
+pagination:
+  style: unknown
+  note: >-
+    search_catalog and lookup_catalog accept a catalog object; the published schema does not document
+    cursor or offset parameters, and no paged response was exercised.
+versioning:
+  scheme: dated protocol version
+  current: '2026-08-25'
+  supported: ['2026-08-25', '2026-04-08', '2026-01-23']
+  negotiation: >-
+    UCP version is selected via /.well-known/ucp supported_versions, which serves a per-version
+    profile URL. MCP negotiates separately: initialize returned protocolVersion 2024-11-05.
+  see: lifecycle/4th-heart-lifecycle.yml
+request_tracing:
+  header: x-request-id
+  observed: true
+  example_shape: 441cee09-96bc-4ace-b17e-d9d836759426-1788640727
+  evidence: observed on a 200 response from POST /api/ucp/mcp on 2026-09-05
+error_envelope:
+  shape: JSON-RPC 2.0 error object with a nested data.code discriminator
+  http_status_on_error: 422
+  see: errors/4th-heart-problem-types.yml
+rate_limit_signaling:
+  documented: true
+  headers_observed: []
+  note: >-
+    /llms.txt states the MCP endpoint is rate limited per IP and that agents should back off on 429.
+    No RateLimit-* or X-RateLimit-* headers were present on the observed 200 responses, so an agent
+    learns its budget only by being refused.
+  see: rate-limits/4th-heart-rate-limits.yml
+money:
+  representation: >-
+    Integer minor units paired with an ISO 4217 currency code, e.g. {"amount": 600, "currency":
+    "USD"} is $6.00. Stated in every tool description; convert before quoting a price to a buyer.
+human_in_the_loop:
+  required_for: [complete_checkout]
+  note: >-
+    Published instructions require contemporaneous buyer approval at the moment of payment. Agents
+    that cannot obtain it are directed to route the purchase through Shop Pay instead.
