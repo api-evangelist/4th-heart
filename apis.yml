@@ -2,12 +2,12 @@ aid: 4th-heart
 name: 4th & Heart
 description: '4th & Heart is a California-based consumer packaged goods company that makes grass-fed,
   pasture-raised ghee (clarified butter) and ghee-based spreads, sold direct-to-consumer from its own
-  Shopify storefront at fourthandheart.com and through national grocery retail. It is not a software
-  vendor and publishes no developer program, but the storefront exposes a real, unauthenticated
-  agent-commerce surface: a Universal Commerce Protocol (UCP) merchant profile at /.well-known/ucp, a
-  live Model Context Protocol server at /api/ucp/mcp serving 13 catalog, cart, checkout and order
-  tools with full JSON Schema, an /llms.txt and /agents.md agent instruction document, and Shopify
-  customer-account OAuth 2.0 / OpenID Connect discovery metadata on its own domain.'
+  Shopify storefront at fourthandheart.com and through national grocery retail. It is not a software vendor
+  and publishes no developer program, but the storefront exposes a real, unauthenticated agent-commerce
+  surface: a Universal Commerce Protocol (UCP) merchant profile at /.well-known/ucp, a live Model Context
+  Protocol server at /api/ucp/mcp serving 13 catalog, cart, checkout and order tools with full JSON Schema,
+  an /llms.txt and /agents.md agent instruction document, and Shopify customer-account OAuth 2.0 / OpenID
+  Connect discovery metadata on its own domain.'
 image: https://fourthandheart.com/cdn/shop/files/4thandHeartGhee.png?v=1730292913
 url: https://raw.githubusercontent.com/api-evangelist/4th-heart/refs/heads/main/apis.yml
 specificationVersion: '0.20'
@@ -21,23 +21,41 @@ tags:
 - E-Commerce
 - Agentic Commerce
 - Universal Commerce Protocol
+- MCP
+- Shopify
+- Direct to Consumer
+tags_raw:
+- Company
+- Food and Beverage
+- Consumer Packaged Goods
+- Retail
+- E-Commerce
+- Agentic Commerce
+- Universal Commerce Protocol
 - Model Context Protocol
 - Shopify
 - Direct to Consumer
 apis:
-- aid: 4th-heart-commerce
+- aid: 4th-heart:4th-heart-commerce
   name: 4th & Heart Agentic Commerce (UCP / MCP)
-  description: 'The agent-facing commerce surface of the 4th & Heart online store, implemented by
-    Shopify''s native Universal Commerce Protocol support on the merchant''s own domain. A remote MCP
-    server at https://fourthandheart.com/api/ucp/mcp answers tools/list anonymously with 13 tools
-    covering catalog search and lookup, cart lifecycle, checkout lifecycle and order retrieval. The
-    UCP merchant profile at /.well-known/ucp declares protocol version 2026-08-25 with two prior
-    dated versions still served, and the shopping, cart, checkout, fulfillment, discount and order
-    capabilities. Checkout completion requires contemporaneous buyer approval.'
+  description: The agent-facing commerce surface of the 4th & Heart online store, implemented by Shopify's
+    native Universal Commerce Protocol support on the merchant's own domain. A remote MCP server at https://fourthandheart.com/api/ucp/mcp
+    answers tools/list anonymously with 13 tools covering catalog search and lookup, cart lifecycle, checkout
+    lifecycle and order retrieval. The UCP merchant profile at /.well-known/ucp declares protocol version
+    2026-08-25 with two prior dated versions still served, and the shopping, cart, checkout, fulfillment,
+    discount and order capabilities. Checkout completion requires contemporaneous buyer approval.
   image: https://fourthandheart.com/cdn/shop/files/4thandHeartGhee.png?v=1730292913
   humanURL: https://fourthandheart.com/agents.md
   baseURL: https://fourthandheart.com/api/ucp/mcp
   tags:
+  - Agentic Commerce
+  - MCP
+  - Universal Commerce Protocol
+  - E-Commerce
+  - Catalog
+  - Cart
+  - Checkout
+  tags_raw:
   - Agentic Commerce
   - Model Context Protocol
   - Universal Commerce Protocol
