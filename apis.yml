@@ -78,6 +78,9 @@ apis:
     url: data-model/4th-heart-data-model.yml
   - type: RateLimits
     url: rate-limits/4th-heart-rate-limits.yml
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
