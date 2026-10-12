@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/4th-heart/integrations
+- https://n8n.io/integrations/4th-heart/
+- https://composio.dev/toolkits/4th-heart
+- https://monid.ai/tools/4th-heart
+checked:
+- https://composio.dev/toolkits/4th-heart
+- https://monid.ai/tools/4th-heart
+- https://n8n.io/integrations/4th-heart/
+- https://zapier.com/apps/4th-heart/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
