@@ -64,5 +64,116 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-4th & Heart is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://www.nasdaqprivatemarket.com/
+4th & Heart is a California-based consumer packaged goods company that makes grass-fed, pasture-raised ghee (clarified butter) and ghee-based spreads, sold direct-to-consumer from its own Shopify storefront at fourthandheart.com and through national grocery retail. It is not a software vendor and publishes no developer program, but the storefront exposes a real, unauthenticated agent-commerce surface: a Universal Commerce Protocol (UCP) merchant profile at /.well-known/ucp, a live Model Context Protocol server at /api/ucp/mcp serving 13 catalog, cart, checkout and order tools with full JSON Schema, an /llms.txt and /agents.md agent instruction document, and Shopify customer-account OAuth 2.0 / OpenID Connect discovery metadata on its own domain.
+
+**Areas:** Company · Food and Beverage · Consumer Packaged Goods · Retail · E-Commerce · Agentic Commerce · Universal Commerce Protocol · MCP · Shopify · Direct to Consumer
+
+## 4th & Heart on APIs.io
+
+Everything profiled for 4th & Heart is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/4th-heart/](https://apis.io/providers/4th-heart/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [4th & Heart Agentic Commerce (UCP / MCP)](https://apis.io/apis/4th-heart/4th-heart-commerce/) — The agent-facing commerce surface of the 4th & Heart online store, implemented by Shopify's native Universal Commerce Protocol support on the merchant's own…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [universal-commerce](https://apis.io/servers/4th-heart/universal-commerce/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [4Th Heart Authentication](https://apis.io/security/4th-heart/4th-heart-authentication/)
+- [4Th Heart Domain Security](https://apis.io/security/4th-heart/4th-heart-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [4Th Heart Scopes](https://apis.io/scopes/4th-heart/4th-heart-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [4Th Heart Plans Pricing](https://apis.io/plans/4th-heart/4th-heart-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [4Th Heart Rate Limits](https://apis.io/rate-limits/4th-heart/4th-heart-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://fourthandheart.com/)
+- [Documentation](https://fourthandheart.com/agents.md)
+- [Sign up](https://fourthandheart.com/account/login)
+- [Support](https://fourthandheart.com/pages/contact-us)
+- [Blog](https://fourthandheart.com/blogs/recipes)
+- [Terms of service](https://fourthandheart.com/policies/terms-of-service)
+- [Privacy policy](https://fourthandheart.com/policies/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 25.5** — emerging · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 34.2 |
+
+**Agent readiness 23.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | platform (partial credit) |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/4th-heart/](https://apis.io/providers/4th-heart/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for 4th & Heart: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/4th-heart/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
