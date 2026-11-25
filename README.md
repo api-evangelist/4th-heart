@@ -90,26 +90,26 @@ Model Context Protocol servers that expose the API to agents.
 
 Authentication, trust centre, and vulnerability disclosure.
 
-- [4Th Heart Authentication](https://apis.io/security/4th-heart/4th-heart-authentication/)
-- [4Th Heart Domain Security](https://apis.io/security/4th-heart/4th-heart-domain-security/)
+- [4th & Heart Authentication](https://apis.io/security/4th-heart/4th-heart-authentication/)
+- [4th & Heart Domain Security](https://apis.io/security/4th-heart/4th-heart-domain-security/)
 
 #### OAuth scopes (1)
 
 The permissions the API asks for.
 
-- [4Th Heart Scopes](https://apis.io/scopes/4th-heart/4th-heart-scopes/)
+- [4th & Heart Scopes](https://apis.io/scopes/4th-heart/4th-heart-scopes/)
 
 #### Plans and pricing (1)
 
 Published plans, tiers and prices.
 
-- [4Th Heart Plans Pricing](https://apis.io/plans/4th-heart/4th-heart-plans-pricing/)
+- [4th & Heart Plans Pricing](https://apis.io/plans/4th-heart/4th-heart-plans-pricing/)
 
 #### Rate limits (1)
 
 Published request limits.
 
-- [4Th Heart Rate Limits](https://apis.io/rate-limits/4th-heart/4th-heart-rate-limits/)
+- [4th & Heart Rate Limits](https://apis.io/rate-limits/4th-heart/4th-heart-rate-limits/)
 
 ## Where to find this API
 
@@ -125,7 +125,7 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 25.5** — emerging · rubric 0.25.0 · scored 2026-10-23
+**Kin Score 26.3** — thin · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
@@ -134,9 +134,9 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Contract governance | 18.2 |
 | Operational transparency | 0.0 |
 | Developer ergonomics | 30.4 |
-| Access clarity | 34.2 |
+| Access clarity | 42.6 |
 
-**Agent readiness 23.7** — agent-aware
+**Agent readiness 23.2** — agent-aware
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -161,8 +161,12 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Agentic Commerce | platform (partial credit) |
 | Pagination Ratio | na |
 | Operation Distinctiveness | na |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
-**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+**Regulatory alignment 28.4** — Horizontal (data, software, accessibility, platform)
 
 The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/4th-heart/](https://apis.io/providers/4th-heart/).
 
